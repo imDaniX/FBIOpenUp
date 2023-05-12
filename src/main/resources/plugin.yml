@@ -1,4 +1,28 @@
 name: FBIOpenUp
 version: '${project.version}'
-main: me.imdanix.fbiopenup.FBIOpenUp
+main: me.imdanix.fbiopenup.FbiPlugin
 api-version: 1.16
+commands:
+  search:
+    permission: fbiopenup.search.command
+  getsearchitem:
+    permission: fbiopenup.search.item.get
+  fbiopenup:
+    permission: fbiopenup.reload
+permissions:
+  fbiopenup.admin:
+    default: false
+    children:
+      fbiopenup.exempt: true
+      fbiopenup.unlimited: true
+      fbiopenup.search.command: true
+      fbiopenup.search.item: true
+      fbiopenup.search.item.get: true
+      fbiopenup.reload: true
+  fbiopenup.moder:
+    default: false
+    children:
+      fbiopenup.unlimited: true
+      fbiopenup.search.command: true
+      fbiopenup.search.item: true
+      fbiopenup.search.item.get: true
