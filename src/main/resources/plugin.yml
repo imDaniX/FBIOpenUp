@@ -1,0 +1,4 @@
+name: FBIOpenUp
+version: '${project.version}'
+main: me.imdanix.fbiopenup.FBIOpenUp
+api-version: 1.16
