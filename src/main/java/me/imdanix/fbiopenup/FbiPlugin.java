@@ -77,7 +77,7 @@ public final class FbiPlugin extends JavaPlugin implements Listener {
                 if (args.length == 0) {
                     throw new CommandException("no-args");
                 }
-                new LockedView(
+                new OtherView(
                         requirePlayer(sender, "console-disallowed"),
                         requirePlayer(getServer().getPlayerExact(args[0]), "player-missing")
                 ).open();
@@ -109,7 +109,7 @@ public final class FbiPlugin extends JavaPlugin implements Listener {
                 isSearchGlass(watcher.getInventory().getItem(event.getHand())) &&
                 watcher.hasPermission("fbiopenup.search.item")
         ) {
-            new LockedView(watcher, clicked).open();
+            new OtherView(watcher, clicked).open();
         }
     }
 
@@ -119,17 +119,17 @@ public final class FbiPlugin extends JavaPlugin implements Listener {
 
     @EventHandler(ignoreCancelled = true)
     public void onInvClick(InventoryClickEvent event) {
-        if (event.getView() instanceof LockedView) {
+        if (event.getView() instanceof OtherView) {
             event.setCancelled(true);
         }
     }
 
-    private class LockedView extends InventoryView {
+    private class OtherView extends InventoryView {
         private final Player viewed;
         private final Player watcher;
         private String customTitle;
 
-        private LockedView(Player watcher, Player viewed) {
+        private OtherView(Player watcher, Player viewed) {
             this.viewed = viewed;
             this.watcher = watcher;
         }
